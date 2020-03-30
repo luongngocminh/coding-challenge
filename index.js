@@ -101,28 +101,22 @@ i`;
 let test = NAMES.split("\n");
 
 function solve(names) {
-    let existingNames = [];
-    let count = {};
+    let dict = {};
     let result = [];
-    for (let name of names) {
-        count[name] = (count[name] || 0) + 1;
+    for(let name of names) {
+        let prefix = name;
         let s = "";
-        for (let char of name) {
-            s += char;
-            let  = true
-            if (!existingNames.some(name => name.slice(0, s.length) == s)) {
-                result.push(s);
-                break;
+        for(let i = name.length - 1; i >= 0; i--) {
+            if(!(prefix in dict)) {
+                s = prefix;
+                dict[prefix] = 0;
             }
+            prefix = prefix.substring(0, prefix.length - 1);
         }
-
-        if (existingNames.some(existingName => (existingName.slice(0, name.length) == name)) && !existingNames.some(exName => (name == exName))) {
-            result.push(name);
-        } 
-            
-        if (existingNames.some(existingName => existingName == name)) result.push([name, count[name]].join(" "));
-        existingNames.push(name);
+        dict[name]++;
+        result.push(s.length > 0 ? s : (name + (dict[name] == 1 ? "":(" "+dict[name]))));
     }
+    
     return result;
 }
 
