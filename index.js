@@ -1,4 +1,4 @@
-const NAMES = ['alfred', 'alfie', 'alfie'];
+const NAMES = ['alfred', 'alfie', 'alfie', 'alfiee ', 'zzz'];
 
 function solve(names) {
     let existingNames = [];
@@ -14,7 +14,8 @@ function solve(names) {
                 break;
             }
         }
-        if (s === name && s.length > 1) result.push([name, count[name]].join(" "));
+
+        if (s === name && count[name] > 1) result.push([name, count[name]].join(" "));
         existingNames.push(name);
     }
     return result;
